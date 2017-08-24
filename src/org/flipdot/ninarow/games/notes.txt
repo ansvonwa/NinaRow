@@ -1,0 +1,6 @@
+foo bar
+@deprecated: TODO: struct containing base vector, Pattern to match, boolean whether the surface is closed in this direction
+TODO: struct A containing length and boolean whether the surface is closed in this direction
+TODO: struct B containing base vector and Pattern to match
+
+TODO: make fast & efficient ;)
