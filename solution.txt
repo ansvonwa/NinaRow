@@ -1,0 +1,53 @@
+Board:
+
+   *0 *1 *2 *3  *4 *5 *6 *7  *8 *9 *A *B  *C *D *E *F
+0*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+1*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+2*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+3*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+
+4*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+5*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+6*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+7*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+
+8*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+9*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+A*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+B*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+
+C*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+D*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+E*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+F*  _  _  _  _   _  _  _  _   _  _  _  _   _  _  _  _
+
+XX ist the hexadecimal notation, DdRr_4 is in base 4
+player is x, opponent is o
+notation: o represents the value of the last step of the opponent, o$n the n-th o
+"x:$$" means: x sets to field $$
+[$G-$H][$I-$J] means the fields f for that $G <= f/16 <= $H and $I <= f%16 <= $J
+wlog: without loss of generality / rotate/mirror until satisfied
+either ... or ...:
+cp(a) = counterpart of a = from a two steps in each dimension
+row(a,b)=union of all rows that go through a and b (union {r row | a in r, b in r})
+
+x begins:
+x:00
+if o != AA
+ x:AA
+ wlog: o1,o2 != [4-7][4-7] and o1,o2 != [C-F][C-F] # proof: o1 and o2 have to be the same in at least one dimension, otherwise, they are on one diagonal through 00 and AA (let that be 00-F5-AA-5F). They cannot be equal at two dimensions, otherwise they would be on a single plane (let that be [C-F][4-7]). Thus, they are equal in exactly one dimension. Let that be %4. wlog, let o1, o2 be at [C-F][4-7] and [4-7][C-F]). q.e.d.
+  wlog: row(o1,o2) does not intersect [4-7][4-7] # proof: |row(o1,o2)| <= 4 or ?
+   _cross(5,7, 5,7)
+
+
+
+Notation for full games: in base 4 and with lowest possible value
+So, first stone is always 
+0000
+second can be: 
+0001,0002,
+0011,0012,0022,
+0111,0112,0122,0222,
+1111,1112,1122,1222,2222
+
+
